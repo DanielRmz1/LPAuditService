@@ -59,6 +59,27 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Account\Login.cs" />
+    <Compile Include="Models\Account\Role.cs" />
+    <Compile Include="Models\Account\User.cs" />
+    <Compile Include="Models\Account\UserRoles.cs" />
+    <Compile Include="Models\Areas\Area.cs" />
+    <Compile Include="Models\Areas\Group.cs" />
+    <Compile Include="Models\Areas\Machine.cs" />
+    <Compile Include="Models\Areas\Part.cs" />
+    <Compile Include="Models\Auditing\Audit.cs" />
+    <Compile Include="Models\Auditing\AuditConfig.cs" />
+    <Compile Include="Models\Calendar\Event.cs" />
+    <Compile Include="Models\Checking\Answer.cs" />
+    <Compile Include="Models\Checking\AnswerLog.cs" />
+    <Compile Include="Models\Checking\Checklist.cs" />
+    <Compile Include="Models\Checking\ChecklistLog.cs" />
+    <Compile Include="Models\Checking\Period.cs" />
+    <Compile Include="Models\Checking\Question.cs" />
+    <Compile Include="Models\Checking\QuestionLog.cs" />
+    <Compile Include="Models\Checking\UsersChecklist.cs" />
+    <Compile Include="Models\LayoutProcessContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
