@@ -11,6 +11,6 @@ namespace LPAuditService.Models.Checking
         [Key]
         public int int_IdUsersChecklist { get; set; }
         public Checklist Checklist { get; set; }
-        public User Users { get; set; }
+        public User User { get; set; }
     }
 }
