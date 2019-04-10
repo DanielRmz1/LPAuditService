@@ -14,6 +14,12 @@ namespace LPAuditService.Models.Calendar
 
         public string chr_Title { get; set; }
         public DateTime dte_ScheduleDate { get; set; }
-        public int int_State { get; set; }   //0 -> SCHEDULED, 1 -> NOTANSWERED, ANSWERED -> 2
+
+        /// <summary>
+        ///  0 -> SCHEDULED (Evento o checklist pendiente)
+        ///  1 -> NOSTANSWERED (Es cuando el evento ha caducado y el checklist no se contestó)
+        ///  2 - > Answered (El checklist se contestó)
+        /// </summary>
+        public int int_State { get; set; } 
     }
 }
