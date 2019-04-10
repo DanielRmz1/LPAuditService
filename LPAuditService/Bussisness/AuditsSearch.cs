@@ -26,7 +26,7 @@ namespace LPAuditService.Bussisness
             {
                 foreach(var config in audit.AuditConfigs)
                 {
-                    if(config.dte_LastDateCreated < DateTime.Now || (config.dte_LastDateCreated - DateTime.Now).Days == 7)
+                    if((config.dte_LastDateCreated < DateTime.Now || (config.dte_LastDateCreated - DateTime.Now).Days <= 7))
                     {
                         await DeployEvent.Add(config.int_IdAuditConfig);
                     }

@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,7 +22,8 @@ namespace LPAuditService
         public MainForm()
         {
             InitializeComponent();
-            auditsSearch.BuscarAuditoriasSinEventos();   
+            var hilo = new Thread(new ThreadStart(() => auditsSearch.BuscarAuditoriasSinEventos()));
+            hilo.Start();
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
