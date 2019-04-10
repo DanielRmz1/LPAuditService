@@ -1,4 +1,5 @@
-﻿using LPAuditService.Models;
+﻿using LPAuditService.Bussisness;
+using LPAuditService.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +16,12 @@ namespace LPAuditService
     public partial class MainForm : Form
     {
         private LayoutProcessContext db = new LayoutProcessContext();
+        AuditsSearch auditsSearch = new AuditsSearch();
 
         public MainForm()
         {
             InitializeComponent();
-            
+            auditsSearch.BuscarAuditoriasSinEventos();   
         }
 
         private async void MainForm_Load(object sender, EventArgs e)
