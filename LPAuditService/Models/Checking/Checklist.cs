@@ -49,18 +49,7 @@ namespace LPAuditService.Models.Checking
         
         public User int_Owner { get; set; }
 
-        [NotMapped]
-        [Display(Name = "Area")]
-        public int int_Area { get; set; }
-
         public Area Area { get; set; }
-
-        [NotMapped]
-        [Display(Name = "Who can answer this?")]
-        public int[] SelectedUsers { get; set; }
-
-        [NotMapped]
-        public int id_Period { get; set; }
 
         public List<Question> Questions { get; set; }
         

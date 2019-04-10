@@ -1,5 +1,6 @@
 ﻿using LPAuditService.Models.Account;
 using LPAuditService.Models.Areas;
+using LPAuditService.Models.Auditing;
 using LPAuditService.Models.Calendar;
 using LPAuditService.Models.Checking;
 using System.Data.Entity;
@@ -31,6 +32,9 @@ namespace LPAuditService.Models
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Machine> Machines { get; set; }
         public virtual DbSet<Part> Parts { get; set; }
+
+        public DbSet<Audit> Audits { get; set; }
+        public DbSet<AuditConfig> AuditConfigs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -126,9 +130,5 @@ namespace LPAuditService.Models
                 .Property(e => e.chr_Reference)
                 .IsUnicode(false);
         }
-
-        public System.Data.Entity.DbSet<LPAuditService.Models.Auditing.Audit> Audits { get; set; }
-
-        public System.Data.Entity.DbSet<LPAuditService.Models.Auditing.AuditConfig> AuditConfigs { get; set; }
     }
 }
