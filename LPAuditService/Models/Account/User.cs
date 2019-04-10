@@ -1,4 +1,5 @@
-﻿using LPAuditService.Models.Checking;
+﻿using LPAuditService.Models.Calendar;
+using LPAuditService.Models.Checking;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -63,5 +64,7 @@ namespace LPAuditService.Models.Account
 
         [Display(Name = "Role")]
         public List<UserRoles> UserRoles { get; set; }
+
+        public List<Event> Events { get; set; }
     }
 }

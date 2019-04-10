@@ -1,4 +1,5 @@
-﻿using LPAuditService.Models.Checking;
+﻿using LPAuditService.Models.Account;
+using LPAuditService.Models.Checking;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,6 +21,8 @@ namespace LPAuditService.Models.Calendar
         ///  1 -> NOSTANSWERED (Es cuando el evento ha caducado y el checklist no se contestó)
         ///  2 - > Answered (El checklist se contestó)
         /// </summary>
-        public int int_State { get; set; } 
+        public int int_State { get; set; }
+
+        public User User { get; set; }
     }
 }
