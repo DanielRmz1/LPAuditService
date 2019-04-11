@@ -29,7 +29,6 @@ namespace LPAuditService
         private async void MainForm_Load(object sender, EventArgs e)
         {
             await TestConnection();
-
         }
 
         public async Task TestConnection()

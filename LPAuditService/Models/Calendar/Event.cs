@@ -22,7 +22,7 @@ namespace LPAuditService.Models.Calendar
 
         /// <summary>
         ///  0 -> SCHEDULED (Evento o checklist pendiente)
-        ///  1 -> NOSTANSWERED (Es cuando el evento ha caducado y el checklist no se contestó)
+        ///  1 -> NOT ANSWERED (Es cuando el evento ha caducado y el checklist no se contestó)
         ///  2 -> Answered (El checklist se contestó)
         ///  3 -> PUEDE SER CONTESTADO O ATENDIDO EN CUALQUIER MOMENTO
         /// </summary>
