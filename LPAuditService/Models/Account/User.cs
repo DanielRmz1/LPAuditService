@@ -1,4 +1,5 @@
-﻿using LPAuditService.Models.Calendar;
+﻿using LPAuditService.Models.Auditing;
+using LPAuditService.Models.Calendar;
 using LPAuditService.Models.Checking;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -54,8 +55,6 @@ namespace LPAuditService.Models.Account
         [Display(Name = "Phone number")]
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only numbers are allowed.")]
         public string chr_Phone { get; set; }
-        
-        public List<Checklist> Checklists { get; set; }
 
         [NotMapped]
         [Required]
@@ -66,5 +65,7 @@ namespace LPAuditService.Models.Account
         public List<UserRoles> UserRoles { get; set; }
 
         public List<Event> Events { get; set; }
+
+        public List<UsersAudits> UsersAudits { get; set; }
     }
 }

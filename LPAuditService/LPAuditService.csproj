@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201904101640154_InitialCreate.Designer.cs">
       <DependentUpon>201904101640154_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904111721570_InitialCreate1.cs" />
+    <Compile Include="Migrations\201904111721570_InitialCreate1.Designer.cs">
+      <DependentUpon>201904111721570_InitialCreate1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\Role.cs" />
     <Compile Include="Models\Account\User.cs" />
@@ -75,15 +79,15 @@
     <Compile Include="Models\Areas\Part.cs" />
     <Compile Include="Models\Auditing\Audit.cs" />
     <Compile Include="Models\Auditing\AuditConfig.cs" />
+    <Compile Include="Models\Auditing\UsersAudits.cs" />
     <Compile Include="Models\Calendar\Event.cs" />
     <Compile Include="Models\Checking\Answer.cs" />
     <Compile Include="Models\Checking\AnswerLog.cs" />
     <Compile Include="Models\Checking\Checklist.cs" />
     <Compile Include="Models\Checking\ChecklistLog.cs" />
-    <Compile Include="Models\Checking\Period.cs" />
+    <Compile Include="Models\Auditing\Period.cs" />
     <Compile Include="Models\Checking\Question.cs" />
     <Compile Include="Models\Checking\QuestionLog.cs" />
-    <Compile Include="Models\Checking\UsersChecklist.cs" />
     <Compile Include="Models\LayoutProcessContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904101640154_InitialCreate.resx">
       <DependentUpon>201904101640154_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904111721570_InitialCreate1.resx">
+      <DependentUpon>201904111721570_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

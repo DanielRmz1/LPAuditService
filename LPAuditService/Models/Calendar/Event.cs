@@ -1,4 +1,5 @@
 ﻿using LPAuditService.Models.Account;
+using LPAuditService.Models.Auditing;
 using LPAuditService.Models.Checking;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -6,12 +7,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LPAuditService.Models.Calendar
 {
-    [Table("Tbl_Event")]
+    [Table("Tbl_Events")]
     public class Event
     {
         [Key]
         public int int_IdEvent { get; set; }
         public Checklist Checklist_Id { get; set; }
+
+        public AuditConfig AuditConfig { get; set; }
 
         public string chr_Title { get; set; }
         public DateTime dte_ScheduleDate { get; set; }

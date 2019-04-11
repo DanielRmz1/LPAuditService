@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LPAuditService.Models.Checking
+namespace LPAuditService.Models.Auditing
 {
     [Table("Tbl_Periods")]
     public class Period
