@@ -18,8 +18,8 @@ namespace LPAuditService.Bussisness
 
         public static async Task Add(int id_config)
         {
-            var config = db.AuditConfigs.SingleOrDefault(x => x.int_IdAuditConfig == id_config);
-            db.Periods.ToList();
+            var config = db.AuditConfigs.Include(x=>x.int_Period).SingleOrDefault(x => x.int_IdAuditConfig == id_config);
+            //db.Periods.ToList();
             
             await AddEventByChecklist(config);
         }
@@ -145,9 +145,8 @@ namespace LPAuditService.Bussisness
         private static void AddEvent(DateTime scheduleDate, User user, AuditConfig config)
         {
             db.Events.Add(new Event() {
-                Checklist_Id = null,
                 chr_Title = "",
-                dte_ScheduleDate = scheduleDate,
+                dte_ScheduleDate = new DateTime(scheduleDate.Year, scheduleDate.Month, scheduleDate.Day),
                 int_State = 0,
                 User = user,
                 AuditConfig = config

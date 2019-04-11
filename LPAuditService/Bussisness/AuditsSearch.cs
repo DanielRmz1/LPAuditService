@@ -17,8 +17,7 @@ namespace LPAuditService.Bussisness
 
         public AuditsSearch()
         {
-            Audits = db.Audits.ToList();
-            var auditConfigs = db.AuditConfigs.ToList();
+            Audits = db.Audits.Include(x=>x.AuditConfigs).ToList();
         }
 
         public async void BuscarAuditoriasSinEventos()

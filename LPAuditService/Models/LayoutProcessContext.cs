@@ -39,6 +39,8 @@ namespace LPAuditService.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Event>().HasRequired(X => X.User);
+
             modelBuilder.Entity<Group>()
                 .Property(e => e.chr_Key)
                 .IsFixedLength();
