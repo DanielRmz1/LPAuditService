@@ -34,37 +34,70 @@ namespace LPAuditService.Bussisness
             }
 
             await DropDesactivatedAudits();
+            await UpdateNotAnsweredEvents();
         }
 
         public async Task DropDesactivatedAudits()
         {
             try
             {
-                var now = DateTime.Now;
-                var today = new DateTime(now.Year, now.Month, now.Day);
                 var desactivatedAuditsConfigs = db.AuditConfigs.Where(x => !x.Audit.bit_Activo).ToList();
 
-                var idConfigs = desactivatedAuditsConfigs.Select(x => x.int_IdAuditConfig).ToArray();
-
-                var desactivatedAuditsEvents = db.Events.Where(x => (idConfigs.Contains(x.AuditConfig.int_IdAuditConfig)) && (x.dte_ScheduleDate >= today) && x.int_State != 2).ToList();
-
-                if (desactivatedAuditsEvents.Count > 0)
+                if(desactivatedAuditsConfigs.Count > 0)
                 {
-                    foreach (var item in desactivatedAuditsConfigs)
-                        item.dte_LastDateCreated = DateTime.Now;
+                    var now = DateTime.Now;
+                    var today = new DateTime(now.Year, now.Month, now.Day);
 
-                    foreach (var e in desactivatedAuditsEvents)
-                        db.Events.Remove(e);
+                    var idConfigs = desactivatedAuditsConfigs.Select(x => x.int_IdAuditConfig).ToArray();
 
-                    await db.SaveChangesAsync();
-                }
-                    
+                    var desactivatedAuditsEvents = db.Events.Where(x => (idConfigs.Contains(x.AuditConfig.int_IdAuditConfig)) && (x.dte_ScheduleDate >= today) && x.int_State != 2).ToList();
+
+                    if (desactivatedAuditsEvents.Count > 0)
+                    {
+                        foreach (var item in desactivatedAuditsConfigs)
+                            item.dte_LastDateCreated = DateTime.Now;
+
+                        db.Events.RemoveRange(desactivatedAuditsEvents);                            
+
+                        await db.SaveChangesAsync();
+                    }
+                } 
             }
             catch (Exception)
             {
                 throw;
             }
             
+        }
+
+        public async Task UpdateNotAnsweredEvents()
+        {
+            try
+            {
+
+                var now = DateTime.Now;
+                var today = new DateTime(now.Year, now.Month, now.Day);
+
+                var notAnsweredEvents = db.Events.Where(x => x.dte_ScheduleDate < today && x.int_State == 0).ToList();
+
+                if (notAnsweredEvents.Count > 0)
+                {
+
+                    foreach (var e in notAnsweredEvents)
+                    {
+                        e.int_State = 1;
+                        db.Entry(e).State = EntityState.Modified;
+                    }
+
+                    await db.SaveChangesAsync();
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
     }

@@ -31,9 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblConnectionStatus = new System.Windows.Forms.Label();
             this.lblDbErrorDescription = new System.Windows.Forms.Label();
+            this.lblConnectionStatus = new System.Windows.Forms.Label();
             this.timerTestConnection = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,19 +55,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(810, 32);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // lblConnectionStatus
-            // 
-            this.lblConnectionStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblConnectionStatus.AutoSize = true;
-            this.lblConnectionStatus.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConnectionStatus.Location = new System.Drawing.Point(3, 0);
-            this.lblConnectionStatus.Name = "lblConnectionStatus";
-            this.lblConnectionStatus.Size = new System.Drawing.Size(176, 32);
-            this.lblConnectionStatus.TabIndex = 0;
-            this.lblConnectionStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // lblDbErrorDescription
             // 
             this.lblDbErrorDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -81,17 +69,41 @@
             this.lblDbErrorDescription.TabIndex = 1;
             this.lblDbErrorDescription.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // lblConnectionStatus
+            // 
+            this.lblConnectionStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblConnectionStatus.AutoSize = true;
+            this.lblConnectionStatus.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConnectionStatus.Location = new System.Drawing.Point(3, 0);
+            this.lblConnectionStatus.Name = "lblConnectionStatus";
+            this.lblConnectionStatus.Size = new System.Drawing.Size(176, 32);
+            this.lblConnectionStatus.TabIndex = 0;
+            this.lblConnectionStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // timerTestConnection
             // 
             this.timerTestConnection.Enabled = true;
             this.timerTestConnection.Interval = 500000;
             this.timerTestConnection.Tick += new System.EventHandler(this.timerTestConnection_Tick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(632, 231);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 482);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
@@ -110,6 +122,7 @@
         private System.Windows.Forms.Label lblConnectionStatus;
         private System.Windows.Forms.Label lblDbErrorDescription;
         private System.Windows.Forms.Timer timerTestConnection;
+        private System.Windows.Forms.Button button1;
     }
 }
 

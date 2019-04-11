@@ -18,6 +18,8 @@ namespace LPAuditService.Models.Calendar
 
         public string chr_Title { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime dte_ScheduleDate { get; set; }
 
         /// <summary>

@@ -35,6 +35,8 @@ namespace LPAuditService.Models.Auditing
         /// Aqui se guardará la ultima fecha en que se crearón los eventos en base a la configuración de esta auditoria y del checklist,
         /// esto con el fin de que el servicio pueda comparar contra la fecha actual y crear nuevos eventos.
         /// </summary>
+        /// [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode=true)]
+        [DataType(DataType.Date)]
         public DateTime dte_LastDateCreated { get; set; }
         
         public Audit Audit { get; set; }
