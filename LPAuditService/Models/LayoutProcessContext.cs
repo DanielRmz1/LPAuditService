@@ -35,6 +35,7 @@ namespace LPAuditService.Models
 
         public DbSet<Audit> Audits { get; set; }
         public DbSet<AuditConfig> AuditConfigs { get; set; }
+        public DbSet<AuditsChecklists> AuditsChecklists { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

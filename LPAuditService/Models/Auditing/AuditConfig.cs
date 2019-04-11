@@ -36,14 +36,14 @@ namespace LPAuditService.Models.Auditing
         /// esto con el fin de que el servicio pueda comparar contra la fecha actual y crear nuevos eventos.
         /// </summary>
         public DateTime dte_LastDateCreated { get; set; }
-
-        public Checklist int_Checklist { get; set; }
         
         public Audit Audit { get; set; }
         
         public Area Area { get; set; }
 
         public List<UsersAudits> UsersAudits { get; set; }
-        
+
+        public List<AuditsChecklists> AuditsChecklists { get; set; }
+
     }
 }

@@ -17,7 +17,8 @@ namespace LPAuditService.Bussisness
 
         public AuditsSearch()
         {
-            Audits = db.Audits.Include(x => x.AuditConfigs).ToList();
+            Audits = db.Audits.ToList();
+            var auditConfigs = db.AuditConfigs.ToList();
         }
 
         public async void BuscarAuditoriasSinEventos()
@@ -26,9 +27,7 @@ namespace LPAuditService.Bussisness
             {
                 foreach(var config in audit.AuditConfigs)
                 {
-
-
-                    if(config.dte_LastDateCreated < DateTime.Now || (config.dte_LastDateCreated - DateTime.Now).Days <= 14)
+                    if(config.dte_LastDateCreated < DateTime.Now || (config.dte_LastDateCreated - DateTime.Now).Days <= 7)
                     {
                         await DeployEvent.Add(config.int_IdAuditConfig);
                     }

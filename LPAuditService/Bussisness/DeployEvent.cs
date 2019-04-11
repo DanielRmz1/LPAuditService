@@ -18,28 +18,28 @@ namespace LPAuditService.Bussisness
 
         public static async Task Add(int id_config)
         {
-            var config = db.AuditConfigs.Include(x => x.int_Checklist).SingleOrDefault(x => x.int_IdAuditConfig == id_config);
+            var config = db.AuditConfigs.SingleOrDefault(x => x.int_IdAuditConfig == id_config);
             db.Periods.ToList();
             
-            await AddEventByChecklist(config.int_Checklist, config);
+            await AddEventByChecklist(config);
         }
 
-        private static async Task AddEventByChecklist(Checklist checklist, AuditConfig config)
+        private static async Task AddEventByChecklist(AuditConfig config)
         {
             switch (config.int_Period.chr_RepeatPeriod)
             {
                 //case "o":
                 //    break;
                 case "d":
-                    await AddWeeklyDailyEvents(checklist, config.dte_LastDateCreated, config.int_Period);
+                    await AddWeeklyDailyEvents(config);
                     ModifyConfigLastDate(config, 30);
                     break;
                 case "w":
-                    await AddWeeklyDailyEvents(checklist, config.dte_LastDateCreated, config.int_Period);
+                    await AddWeeklyDailyEvents(config);
                     ModifyConfigLastDate(config, 30);
                     break;
                 case "m":
-                    await AddMonthlyEvents(checklist, config.dte_LastDateCreated, config.int_Period);
+                    await AddMonthlyEvents(config);
                     ModifyConfigLastDate(config, 60);
                     break;
                 case "q":
@@ -74,22 +74,22 @@ namespace LPAuditService.Bussisness
         //    }
         //}
 
-        private static async Task AddWeeklyDailyEvents(Checklist checklist, DateTime dateTime, Period period)
+        private static async Task AddWeeklyDailyEvents(AuditConfig config)
         {
             try
             {
-                var lastDate = (dateTime < DateTime.Now) ? DateTime.Now : dateTime;
+                var lastDate = (config.dte_LastDateCreated < DateTime.Now) ? DateTime.Now : config.dte_LastDateCreated;
 
                 for (var day = lastDate; day <= lastDate.AddDays(30); day = day.AddDays(1))
                 {
-                    if (IsValidDay(day, period))
+                    if (IsValidDay(day, config.int_Period))
                     {
-                        //var usersChecklist = db.UsersChecklists.Include(x=>x.User).Where(x => x.Checklist.int_IdList == checklist.int_IdList).ToList();
+                        var usersInAudit = db.UsersAudits.Include(x => x.User).Where(x => x.AuditConfig.int_IdAuditConfig == config.int_IdAuditConfig).ToList();
 
-                        //foreach (var asotation in usersChecklist)
-                        //{
-                        //    AddEvent(checklist, day, asotation.User);
-                        //}
+                        foreach (var asotation in usersInAudit)
+                        {
+                            AddEvent(day, asotation.User, config);
+                        }
 
                         await db.SaveChangesAsync();
                     }
@@ -102,26 +102,26 @@ namespace LPAuditService.Bussisness
             }
         }
 
-        private static async Task AddMonthlyEvents(Checklist checklist, DateTime dateTime, Period period)
+        private static async Task AddMonthlyEvents(AuditConfig config)
         {
             try
             {
-                var today = (dateTime < DateTime.Now) ? DateTime.Now : dateTime;
+                var today = (config.dte_LastDateCreated < DateTime.Now) ? DateTime.Now : config.dte_LastDateCreated;
 
                 var firstDayOfCurrentMonth = new DateTime(today.Year, today.Month, 1);
                 for (var month = firstDayOfCurrentMonth; month <= firstDayOfCurrentMonth.AddMonths(6); month = month.AddMonths(1))
                 {
                     for(var day = month; day <= month.AddMonths(1); day = day.AddDays(1))
                     {
-                        if (IsValidDay(day, period) && day >= DateTime.Now)
+                        if (IsValidDay(day, config.int_Period) && day >= DateTime.Now)
                         {
-                            //var usersChecklist = db.UsersChecklists.Include(x => x.User).Where(x => x.Checklist.int_IdList == checklist.int_IdList).ToList();
+                            var usersInAudit = db.UsersAudits.Include(x => x.User).Where(x => x.AuditConfig.int_IdAuditConfig == config.int_IdAuditConfig).ToList();
 
-                            //foreach (var asotation in usersChecklist)
-                            //{
-                             //   AddEvent(checklist, day, asotation.User);
-                            //}
-                            
+                            foreach (var asotation in usersInAudit)
+                            {
+                                AddEvent(day, asotation.User, config);
+                            }
+
                             break;
                         }
                     }
@@ -142,14 +142,15 @@ namespace LPAuditService.Bussisness
 
         }
 
-        private static void AddEvent(Checklist checklist, DateTime scheduleDate, User user)
+        private static void AddEvent(DateTime scheduleDate, User user, AuditConfig config)
         {
             db.Events.Add(new Event() {
-                Checklist_Id = checklist,
+                Checklist_Id = null,
                 chr_Title = "",
                 dte_ScheduleDate = scheduleDate,
                 int_State = 0,
-                User = user
+                User = user,
+                AuditConfig = config
             });
         }
 

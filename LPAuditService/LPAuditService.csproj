@@ -79,6 +79,7 @@
     <Compile Include="Models\Areas\Part.cs" />
     <Compile Include="Models\Auditing\Audit.cs" />
     <Compile Include="Models\Auditing\AuditConfig.cs" />
+    <Compile Include="Models\Auditing\AuditsChecklists.cs" />
     <Compile Include="Models\Auditing\UsersAudits.cs" />
     <Compile Include="Models\Calendar\Event.cs" />
     <Compile Include="Models\Checking\Answer.cs" />

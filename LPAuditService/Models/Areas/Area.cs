@@ -1,4 +1,4 @@
-﻿using LPAuditService.Models.Checking;
+﻿using LPAuditService.Models.Auditing;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -32,6 +32,6 @@ namespace LPAuditService.Models.Areas
 
         public Group int_IdGroup { get; set; }
 
-        public List<Checklist> Checklists { get; set; }
+        public List<AuditConfig> AuditConfigs { get; set; }
     }
 }
